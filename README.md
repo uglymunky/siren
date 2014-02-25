@@ -30,15 +30,18 @@ The media type for JSON Siren is `application/vnd.siren+json`.
     },
     {
       "id": "customerInfo",
-      "class": [ "info", "customer" ],
-      "rel": [ "http://x.io/rels/customer" ], 
-      "properties": { 
-        "customerId": "pj123",
-        "name": "Peter Joseph"
-      },
-      "links": [
-        { "rel": [ "self" ], "href": "http://api.x.io/customers/pj123" }
-      ]
+      "class": [ "orderInfo" ],
+      "rel": [ "http://x.io/rels/customer" ],
+      "entity": {
+        "class": ["info", "customer"]
+	    "properties": {
+	      "customerId": "pj123",
+	      "name": "Peter Joseph"
+	    },
+	    "links": [
+	      { "rel": [ "self" ], "href": "http://api.x.io/customers/pj123" }
+	    ]
+      }
     }
   ],
   "actions": [
@@ -132,7 +135,11 @@ The URI of the linked sub-entity.  Required.
 
 ####Embedded Representation
 
-Embedded sub-entity representations retain all the characteristics of a standard entity, but MUST also contain a `rel` attribute describing the relationship of the sub-entity to its parent.
+Unlike an embedded link, a sub-entity that's an embedded representation must contain an `entity` instead of an `href`:
+
+#####`entity`
+
+The embedded representation of the entity, retaining all the characteristics of a standard entity.  Required.
 
 ###Classes vs. Relationships
 
